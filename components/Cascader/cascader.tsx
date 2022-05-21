@@ -381,7 +381,7 @@ function Cascader<T extends OptionProps>(baseProps: CascaderProps<T>, ref) {
 
 interface ForwardRefCascaderType
   extends React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<CascaderProps> & React.RefAttributes<SelectViewHandle>
+    React.PropsWithoutRef<CascadserProps> & React.RefAttributes<SelectViewHandle>
   > {
   <T = any>(
     props: React.PropsWithChildren<CascaderProps<T>> & {

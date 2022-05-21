@@ -57,8 +57,10 @@ export default function useComponent(components: ComponentsProps) {
     ComponentTh: _components.header.th,
     ComponentHeaderCell: _components.header.cell,
     ComponentBodyWrapper: _components.body.wrapper,
+
     ComponentTbody: _components.body.tbody,
     ComponentBodyRow: _components.body.row,
+
     ComponentTd: _components.body.td,
     ComponentBodyCell: _components.body.cell,
   };

@@ -19,7 +19,7 @@ type TooltipHandle = {
 
 const defaultProps: TooltipProps = {
   position: 'top',
-  trigger: 'hover',
+  trigger: 'click',
   escToClose: false,
   unmountOnExit: true,
   blurToHide: true,

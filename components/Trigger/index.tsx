@@ -74,7 +74,7 @@ const defaultProps = {
   blurToHide: true,
   clickToClose: true,
   classNames: 'fadeIn',
-  trigger: 'hover' as const,
+  trigger: 'hover' as const, // 这里as const 就可以避免判断成string类型，学到了
   position: 'bottom' as const,
   duration: 200,
   unmountOnExit: true,
@@ -97,6 +97,7 @@ class Trigger extends PureComponent<TriggerProps, TriggerState> {
 
   context: React.ContextType<typeof ConfigContext>;
 
+  // 更新时候会触发
   static getDerivedStateFromProps(nextProps, state) {
     if ('popupVisible' in nextProps && nextProps.popupVisible !== state.popupVisible) {
       return {
@@ -408,10 +409,12 @@ class Trigger extends PureComponent<TriggerProps, TriggerState> {
     }
   };
 
+  // 获取span 元素的位置样式
   getPopupStyle = (): any => {
     if (this.unmount || !this.popupContainer) {
       return;
     }
+    // 外层div元素
     const mountContainer = this.popupContainer as Element;
     const content = findDOMNode(this.triggerRef) as HTMLElement;
     const child: HTMLElement = findDOMNode(this) as HTMLElement;
@@ -752,6 +755,7 @@ class Trigger extends PureComponent<TriggerProps, TriggerState> {
   // 创建的dom节点插入getPopupContainer。
   appendToContainer = (node: HTMLDivElement) => {
     caf(this.rafId);
+    // 利用事件机制
     if (this.isDidMount) {
       const { getPopupContainer: getGlobalPopupContainer } = this.context;
       const { getPopupContainer } = this.getMergedProps();
@@ -764,6 +768,7 @@ class Trigger extends PureComponent<TriggerProps, TriggerState> {
         return;
       }
     }
+    // 利用requestAnimationFrame做事件延迟
     this.rafId = raf(() => {
       this.appendToContainer(node);
     });
